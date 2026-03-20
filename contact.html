@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact CliqNx</title>
+  <meta name="description" content="Contact the CliqNx team." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --text:#eef2ff; --muted:#a5b4d4; --primary:#7c5cff; --primary-2:#53c7ff; --line:rgba(255,255,255,.08); --card:rgba(12,18,39,.72); --shadow:0 18px 60px rgba(0,0,0,.35); --max:1100px; }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:radial-gradient(circle at 15% 20%, rgba(83,199,255,.16), transparent 0 22%),radial-gradient(circle at 85% 18%, rgba(124,92,255,.22), transparent 0 24%),linear-gradient(180deg,#060916 0%,#0a1022 50%,#060916 100%)} a{text-decoration:none;color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}.nav{position:sticky;top:0;backdrop-filter:blur(14px);background:rgba(5,8,22,.55);border-bottom:1px solid rgba(255,255,255,.06)}.nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:78px;gap:20px}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:800;font-size:1.2rem}.brand img{width:38px;height:38px;border-radius:10px}.nav-links{display:flex;gap:24px;color:var(--muted)}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 10px 30px rgba(124,92,255,.28)}section{padding:56px 0}.grid{display:grid;grid-template-columns:1fr .85fr;gap:20px}.card{padding:28px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}h1{margin:0 0 18px;font-size:clamp(2.6rem,5vw,4rem);letter-spacing:-.05em}p{color:var(--muted);line-height:1.85}form{display:grid;gap:14px}input,textarea{width:100%;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);color:var(--text);border-radius:16px;padding:15px 16px;font:inherit;outline:none}input:focus,textarea:focus{border-color:rgba(124,92,255,.56);box-shadow:0 0 0 4px rgba(124,92,255,.14)}textarea{min-height:160px;resize:vertical}.foot{padding:30px 0 50px;border-top:1px solid rgba(255,255,255,.06);color:var(--muted);margin-top:32px}@media(max-width:1024px){.grid{grid-template-columns:1fr}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/favicon.png" alt="CliqNx logo" /><span>CliqNx</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <a class="btn" href="contact.html">Contact Us</a>
+    </div>
+  </nav>
+
+  <section>
+    <div class="wrap grid">
+      <div class="card">
+        <h1>Let’s talk.</h1>
+        <p>Want to explore CliqNx for personal workflows, family coordination, or business operations such as fleet checks, compliance, and maintenance reminders? Get in touch.</p>
+      </div>
+      <div class="card">
+        <form>
+          <input type="text" placeholder="Your name" />
+          <input type="email" placeholder="Email address" />
+          <input type="text" placeholder="Company (optional)" />
+          <textarea placeholder="Tell us what you're looking for"></textarea>
+          <button class="btn" type="submit" style="border:none;cursor:pointer;">Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap">© 2026 CliqNx</div></footer>
+</body>
+</html>

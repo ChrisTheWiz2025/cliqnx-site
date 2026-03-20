@@ -1,11 +1,822 @@
+## File: `index.html`
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CliqNx</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CliqNx | The next way to trigger what matters.</title>
+  <meta name="description" content="CliqNx is a modern trigger, reminder, and escalation platform for personal, family, and business workflows." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1023;
+      --card: rgba(12, 18, 39, 0.72);
+      --card-strong: rgba(19, 26, 53, 0.88);
+      --line: rgba(255,255,255,0.08);
+      --text: #eef2ff;
+      --muted: #a5b4d4;
+      --primary: #7c5cff;
+      --primary-2: #53c7ff;
+      --success: #1dbe8b;
+      --glow: 0 10px 30px rgba(124, 92, 255, 0.28);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(83, 199, 255, 0.16), transparent 0 22%),
+        radial-gradient(circle at 85% 18%, rgba(124, 92, 255, 0.22), transparent 0 24%),
+        radial-gradient(circle at 70% 80%, rgba(29, 190, 139, 0.10), transparent 0 18%),
+        linear-gradient(180deg, #060916 0%, #0a1022 50%, #060916 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.15));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; position: relative; z-index: 1; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 8, 22, 0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.2rem;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      box-shadow: var(--glow);
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: var(--glow);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.09);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 78px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #cfd8ff;
+      font-size: .92rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: .95;
+      letter-spacing: -0.06em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #d8ccff 45%, #7bddff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin: 22px 0 0;
+      font-size: 1.12rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 660px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong { display: block; font-size: 1.35rem; margin-bottom: 8px; }
+    .stat span { color: var(--muted); font-size: .95rem; }
+
+    .hero-panel {
+      position: relative;
+      padding: 26px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(124,92,255,.28), rgba(83,199,255,.12), transparent 70%);
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .device {
+      position: relative;
+      z-index: 1;
+      border-radius: 28px;
+      padding: 18px;
+      background: #081020;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .device-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #c5d0f8;
+      font-size: .85rem;
+      margin-bottom: 20px;
+    }
+
+    .device-card {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 14px;
+    }
+
+    .mini-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: .93rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    .status-warning {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.24);
+      color: #ffd38a;
+    }
+
+    .status-success {
+      background: rgba(29, 190, 139, 0.12);
+      border: 1px solid rgba(29, 190, 139, 0.24);
+      color: #98f0cf;
+    }
+
+    .glow-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 0 16px rgba(124,92,255,.7);
+      flex: 0 0 10px;
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-heading {
+      max-width: 740px;
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.02rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card, .solution-card, .contact-card {
+      position: relative;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    }
+
+    .feature-card:hover, .solution-card:hover, .contact-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124,92,255,.32);
+      box-shadow: 0 20px 70px rgba(0,0,0,.38), 0 0 0 1px rgba(124,92,255,.10) inset;
+    }
+
+    .feature-card::after, .solution-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(124,92,255,.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(124,92,255,.24), rgba(83,199,255,.18));
+      border: 1px solid rgba(255,255,255,.12);
+      margin-bottom: 18px;
+      font-size: 1.35rem;
+    }
+
+    .feature-card h3, .solution-card h3, .contact-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .feature-card p, .solution-card p, .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: .98rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .band {
+      margin: 18px 0 8px;
+      padding: 26px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.14), rgba(83, 199, 255, 0.10));
+      border: 1px solid rgba(124, 92, 255, 0.18);
+      box-shadow: var(--shadow);
+    }
+
+    .band h3 { margin: 0 0 10px; font-size: 1.35rem; }
+    .band p { margin: 0; color: var(--muted); line-height: 1.7; }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 15px 16px;
+      font: inherit;
+      outline: none;
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(124,92,255,.56);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.14);
+    }
+
+    .contact-form textarea { min-height: 160px; resize: vertical; }
+
+    footer {
+      padding: 30px 0 50px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 32px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px) scale(.985);
+      transition: opacity .9s ease, transform .9s cubic-bezier(.22, 1, .36, 1);
+      will-change: opacity, transform;
+    }
+
+    [data-reveal].visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .delay-1 { transition-delay: .08s; }
+    .delay-2 { transition-delay: .16s; }
+    .delay-3 { transition-delay: .24s; }
+    .delay-4 { transition-delay: .32s; }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .contact-layout,
+      .split,
+      .card-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 54px; }
+      .nav-links { display: none; }
+      .hero-stats { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(var(--max), calc(100% - 22px)); }
+      .nav-inner { min-height: 72px; }
+      .btn { width: 100%; }
+      .hero-actions { flex-direction: column; }
+      .section-heading h2 { line-height: 1.02; }
+      .brand span { font-size: 1.08rem; }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; text-align: center; padding-top: 100px;">
-  <h1>CliqNx</h1>
-  <p>The next way to trigger what matters.</p>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/favicon.png" alt="CliqNx logo" />
+        <span>CliqNx</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <a class="btn btn-primary" href="contact.html">Book a Demo</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div data-reveal class="visible">
+          <div class="eyebrow"><span class="glow-dot"></span> Intelligent triggers for personal, family, and business workflows</div>
+          <h1><span class="gradient-text">The next way to trigger what matters.</span></h1>
+          <p>
+            CliqNx transforms reminders into structured actions with delivery flow, approvals, proof of completion, and escalation. Built for modern life and real-world operations.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="solutions.html">Explore Solutions</a>
+            <a class="btn btn-secondary" href="contact.html">Talk to Us</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat" data-reveal>
+              <strong>Delivery Flow</strong>
+              <span>Push, email, SMS, voice, and smart follow-up paths.</span>
+            </div>
+            <div class="stat" data-reveal class="delay-1">
+              <strong>Proof & Approval</strong>
+              <span>Require comments, photos, and supervisor approval where needed.</span>
+            </div>
+            <div class="stat" data-reveal class="delay-2">
+              <strong>Built to Scale</strong>
+              <span>From personal routines to fleet compliance and operational checks.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel" data-reveal>
+          <div class="device">
+            <div class="device-top">
+              <span>CliqNx</span>
+              <span>Live trigger preview</span>
+            </div>
+            <div class="device-card">
+              <div class="status-pill status-warning">Upcoming check</div>
+              <h3 style="margin:14px 0 0; font-size:1.3rem;">Forklift FL-03 Safety Check</h3>
+              <div class="mini-row"><span>Recipients</span><strong style="color:#eef2ff;">Operator → Supervisor</strong></div>
+              <div class="mini-row"><span>Delivery Flow</span><strong style="color:#eef2ff;">Push → SMS → Email</strong></div>
+              <div class="mini-row"><span>Rules</span><strong style="color:#eef2ff;">Photo required · Comment required</strong></div>
+            </div>
+            <div class="device-card">
+              <div class="status-pill status-success">Completed</div>
+              <div class="mini-row"><span>07:45</span><span>Approved by Manager</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading" data-reveal>
+          <h2>One engine. Multiple real-world use cases.</h2>
+          <p>CliqNx keeps the product simple on the surface, but powerful underneath. Use it for personal routines, family coordination, or operational compliance and fleet workflows.</p>
+        </div>
+        <div class="card-grid">
+          <article class="feature-card" data-reveal>
+            <div class="icon-box">⏱</div>
+            <h3>Smart Delivery Flow</h3>
+            <p>Move beyond static reminders. Sequence actions across channels and escalate when something is ignored.</p>
+          </article>
+          <article class="feature-card delay-1" data-reveal>
+            <div class="icon-box">📷</div>
+            <h3>Proof of Completion</h3>
+            <p>Require comments, photos, or approval before a task is truly considered done.</p>
+          </article>
+          <article class="feature-card delay-2" data-reveal>
+            <div class="icon-box">🛡</div>
+            <h3>Operational Readiness</h3>
+            <p>Perfect for daily checks, compliance tasks, defect reporting, and business-critical follow-up workflows.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap band" data-reveal>
+        <h3>Built for modern people and real operations</h3>
+        <p>From medication reminders and family routines to forklifts, vehicles, CVRT deadlines, dashcam checks, and maintenance workflows — CliqNx helps you stay ahead of what matters with clarity and control.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 CliqNx. The next way to trigger what matters.</span>
+      <div style="display:flex; gap:16px;">
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
+```
+
+## File: `solutions.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CliqNx Solutions</title>
+  <meta name="description" content="CliqNx solutions for personal reminders, family coordination, and operational compliance." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050816; --card: rgba(12, 18, 39, 0.72); --line: rgba(255,255,255,0.08); --text: #eef2ff; --muted: #a5b4d4;
+      --primary: #7c5cff; --primary-2: #53c7ff; --shadow: 0 18px 60px rgba(0,0,0,.35); --radius: 24px; --max: 1180px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:radial-gradient(circle at 15% 20%, rgba(83,199,255,.16), transparent 0 22%),radial-gradient(circle at 85% 18%, rgba(124,92,255,.22), transparent 0 24%),linear-gradient(180deg,#060916 0%,#0a1022 50%,#060916 100%)}
+    a{text-decoration:none;color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(5,8,22,.55);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:78px;gap:20px}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:800;font-size:1.2rem}.brand img{width:38px;height:38px;border-radius:10px;object-fit:cover}
+    .nav-links{display:flex;gap:24px;color:var(--muted)}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:700}.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 10px 30px rgba(124,92,255,.28)}
+    section{padding:54px 0}.hero h1{margin:0;font-size:clamp(2.6rem,5vw,4.2rem);letter-spacing:-.05em}.hero p,.card p{color:var(--muted);line-height:1.75}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}.card{padding:24px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:20px}.chip{display:inline-block;padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#d7deff;font-size:.9rem;margin-bottom:18px}.cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}.foot{padding:30px 0 50px;border-top:1px solid rgba(255,255,255,.06);color:var(--muted)}
+    @media(max-width:1024px){.grid,.split{grid-template-columns:1fr}.nav-links{display:none}} @media(max-width:640px){.wrap{width:min(var(--max),calc(100% - 22px))}.btn{width:100%}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/favicon.png" alt="CliqNx logo" /><span>CliqNx</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <a class="btn btn-primary" href="contact.html">Book a Demo</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="chip">Solutions</span>
+      <h1>Three paths. One intelligent engine.</h1>
+      <p>CliqNx adapts the same trigger, proof, approval, and escalation engine to personal routines, family coordination, and business operations.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Personal</h3>
+          <p>Medication, appointments, maintenance, deadlines, and everyday routines that need more than a basic reminder.</p>
+        </article>
+        <article class="card">
+          <h3>Family</h3>
+          <p>Shared routines, care reminders, recurring tasks, approvals, and responsibilities that need visibility and follow-up.</p>
+        </article>
+        <article class="card">
+          <h3>Operations</h3>
+          <p>Fleet checks, forklift inspections, CVRT/NCT deadlines, defect reporting, dashcam checks, and maintenance workflows.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <article class="card">
+        <h3>Fleet & Equipment Compliance</h3>
+        <p>Run daily vehicle and forklift checks, require proof of completion, escalate missed tasks, and keep an audit trail that is actually usable.</p>
+      </article>
+      <article class="card">
+        <h3>Modern Family Coordination</h3>
+        <p>Support shared routines with delivery flow, reminders that land at the right time, and better accountability without friction.</p>
+      </article>
+    </div>
+    <div class="wrap cta">
+      <a class="btn btn-primary" href="contact.html">Talk to CliqNx</a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">© 2026 CliqNx</div>
+  </footer>
+</body>
+</html>
+```
+
+## File: `about.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About CliqNx</title>
+  <meta name="description" content="About the CliqNx platform and vision." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --text:#eef2ff; --muted:#a5b4d4; --primary:#7c5cff; --primary-2:#53c7ff; --line:rgba(255,255,255,.08); --card:rgba(12,18,39,.72); --shadow:0 18px 60px rgba(0,0,0,.35); --max:1100px; }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:radial-gradient(circle at 15% 20%, rgba(83,199,255,.16), transparent 0 22%),radial-gradient(circle at 85% 18%, rgba(124,92,255,.22), transparent 0 24%),linear-gradient(180deg,#060916 0%,#0a1022 50%,#060916 100%)} a{text-decoration:none;color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}.nav{position:sticky;top:0;backdrop-filter:blur(14px);background:rgba(5,8,22,.55);border-bottom:1px solid rgba(255,255,255,.06)}.nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:78px;gap:20px}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:800;font-size:1.2rem}.brand img{width:38px;height:38px;border-radius:10px}.nav-links{display:flex;gap:24px;color:var(--muted)}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 10px 30px rgba(124,92,255,.28)}section{padding:56px 0}.card{padding:28px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}h1{margin:0 0 18px;font-size:clamp(2.6rem,5vw,4rem);letter-spacing:-.05em}p{color:var(--muted);line-height:1.85}.stack{display:grid;gap:18px}.foot{padding:30px 0 50px;border-top:1px solid rgba(255,255,255,.06);color:var(--muted);margin-top:32px}@media(max-width:1024px){.nav-links{display:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/favicon.png" alt="CliqNx logo" /><span>CliqNx</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <a class="btn" href="contact.html">Book a Demo</a>
+    </div>
+  </nav>
+
+  <section>
+    <div class="wrap stack">
+      <div class="card">
+        <h1>CliqNx is built for what matters next.</h1>
+        <p>CliqNx started with a simple belief: reminders should do more than sit quietly on a screen. They should trigger action, create accountability, and escalate when something important is ignored.</p>
+        <p>That is why CliqNx is evolving into a modern trigger, delivery, and follow-up platform — useful for personal routines, family coordination, and operational compliance in real-world businesses.</p>
+      </div>
+      <div class="card">
+        <p>Our focus is clarity on the surface and power underneath: delivery flow, approvals, proof requirements, recurrence, and escalation — all presented in a simple, modern interface.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap">© 2026 CliqNx</div></footer>
+</body>
+</html>
+```
+
+## File: `contact.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact CliqNx</title>
+  <meta name="description" content="Contact the CliqNx team." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --text:#eef2ff; --muted:#a5b4d4; --primary:#7c5cff; --primary-2:#53c7ff; --line:rgba(255,255,255,.08); --card:rgba(12,18,39,.72); --shadow:0 18px 60px rgba(0,0,0,.35); --max:1100px; }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:radial-gradient(circle at 15% 20%, rgba(83,199,255,.16), transparent 0 22%),radial-gradient(circle at 85% 18%, rgba(124,92,255,.22), transparent 0 24%),linear-gradient(180deg,#060916 0%,#0a1022 50%,#060916 100%)} a{text-decoration:none;color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}.nav{position:sticky;top:0;backdrop-filter:blur(14px);background:rgba(5,8,22,.55);border-bottom:1px solid rgba(255,255,255,.06)}.nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:78px;gap:20px}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:800;font-size:1.2rem}.brand img{width:38px;height:38px;border-radius:10px}.nav-links{display:flex;gap:24px;color:var(--muted)}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 10px 30px rgba(124,92,255,.28)}section{padding:56px 0}.grid{display:grid;grid-template-columns:1fr .85fr;gap:20px}.card{padding:28px;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}h1{margin:0 0 18px;font-size:clamp(2.6rem,5vw,4rem);letter-spacing:-.05em}p{color:var(--muted);line-height:1.85}form{display:grid;gap:14px}input,textarea{width:100%;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);color:var(--text);border-radius:16px;padding:15px 16px;font:inherit;outline:none}input:focus,textarea:focus{border-color:rgba(124,92,255,.56);box-shadow:0 0 0 4px rgba(124,92,255,.14)}textarea{min-height:160px;resize:vertical}.foot{padding:30px 0 50px;border-top:1px solid rgba(255,255,255,.06);color:var(--muted);margin-top:32px}@media(max-width:1024px){.grid{grid-template-columns:1fr}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/favicon.png" alt="CliqNx logo" /><span>CliqNx</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <a class="btn" href="contact.html">Contact Us</a>
+    </div>
+  </nav>
+
+  <section>
+    <div class="wrap grid">
+      <div class="card">
+        <h1>Let’s talk.</h1>
+        <p>Want to explore CliqNx for personal workflows, family coordination, or business operations such as fleet checks, compliance, and maintenance reminders? Get in touch.</p>
+      </div>
+      <div class="card">
+        <form>
+          <input type="text" placeholder="Your name" />
+          <input type="email" placeholder="Email address" />
+          <input type="text" placeholder="Company (optional)" />
+          <textarea placeholder="Tell us what you're looking for"></textarea>
+          <button class="btn" type="submit" style="border:none;cursor:pointer;">Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap">© 2026 CliqNx</div></footer>
+</body>
+</html>
+```
+
+## Folder: `assets/`
+Add your logo/icon image here as:
+
+- `assets/favicon.png`
+
+Use that same file for:
+- browser tab icon
+- top-left brand mark in navigation
+
+If you want a sharper browser tab icon later, add:
+- `favicon.ico`
+- `apple-touch-icon.png`
+
+for broader device/browser support.
+
+## GitHub steps
+Create these files in your repo:
+- `index.html`
+- `solutions.html`
+- `about.html`
+- `contact.html`
+- folder `assets`
+- file `assets/favicon.png`
+
+Then commit to `main`.
+Cloudflare Pages will auto-redeploy.
+

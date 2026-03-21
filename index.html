@@ -16,6 +16,12 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    #scenario-content {
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+  </style>
 </head>
 <body>
   <nav class="nav">
@@ -82,33 +88,10 @@
           <div class="device">
             <div class="device-top">
               <span>CliqNx</span>
-              <span>Live trigger preview</span>
+              <span id="scenario-title">Live trigger preview</span>
             </div>
 
-            <div class="device-card">
-              <div class="status-pill status-warning">Upcoming check</div>
-              <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Forklift FL-03 Safety Check</h3>
-              <div class="mini-row">
-                <span>Recipients</span>
-                <strong style="color: #EEF2FF;">Operator → Supervisor</strong>
-              </div>
-              <div class="mini-row">
-                <span>Delivery Flow</span>
-                <strong style="color: #EEF2FF;">Push → SMS → Email</strong>
-              </div>
-              <div class="mini-row">
-                <span>Rules</span>
-                <strong style="color: #EEF2FF;">Photo required · Comment required</strong>
-              </div>
-            </div>
-
-            <div class="device-card">
-              <div class="status-pill status-success">Completed</div>
-              <div class="mini-row">
-                <span>07:45</span>
-                <span>Approved by Manager</span>
-              </div>
-            </div>
+            <div id="scenario-content"></div>
           </div>
         </div>
       </div>
@@ -195,6 +178,142 @@
     }, { threshold: 0.18 });
 
     revealEls.forEach((el) => observer.observe(el));
+
+    const scenarios = [
+      {
+        title: "Personal routine",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Upcoming</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Workout Reminder</h3>
+            <div class="mini-row">
+              <span>Recipient</span>
+              <strong style="color: #EEF2FF;">Individual user</strong>
+            </div>
+            <div class="mini-row">
+              <span>Delivery Flow</span>
+              <strong style="color: #EEF2FF;">Push → SMS</strong>
+            </div>
+            <div class="mini-row">
+              <span>Rules</span>
+              <strong style="color: #EEF2FF;">Mark as done</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Completed</div>
+            <div class="mini-row">
+              <span>18:00</span>
+              <span>Confirmed by user</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Family coordination",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Pending</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Children Homework Check</h3>
+            <div class="mini-row">
+              <span>Recipients</span>
+              <strong style="color: #EEF2FF;">Child → Parent</strong>
+            </div>
+            <div class="mini-row">
+              <span>Delivery Flow</span>
+              <strong style="color: #EEF2FF;">Push → Parent alert</strong>
+            </div>
+            <div class="mini-row">
+              <span>Rules</span>
+              <strong style="color: #EEF2FF;">Approval required</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Approved</div>
+            <div class="mini-row">
+              <span>19:15</span>
+              <span>Reviewed by parent</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Elderly care",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Medication due</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Morning Medication Reminder</h3>
+            <div class="mini-row">
+              <span>Recipients</span>
+              <strong style="color: #EEF2FF;">Elderly person → Carer</strong>
+            </div>
+            <div class="mini-row">
+              <span>Delivery Flow</span>
+              <strong style="color: #EEF2FF;">Push → Voice call</strong>
+            </div>
+            <div class="mini-row">
+              <span>Escalation</span>
+              <strong style="color: #EEF2FF;">Notify carer if missed</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Acknowledged</div>
+            <div class="mini-row">
+              <span>08:10</span>
+              <span>Confirmed by carer</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Business operations",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Upcoming check</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Forklift FL-03 Safety Check</h3>
+            <div class="mini-row">
+              <span>Recipients</span>
+              <strong style="color: #EEF2FF;">Operator → Supervisor</strong>
+            </div>
+            <div class="mini-row">
+              <span>Delivery Flow</span>
+              <strong style="color: #EEF2FF;">Push → SMS → Email</strong>
+            </div>
+            <div class="mini-row">
+              <span>Rules</span>
+              <strong style="color: #EEF2FF;">Photo required · Comment required</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Completed</div>
+            <div class="mini-row">
+              <span>07:45</span>
+              <span>Approved by Manager</span>
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    let scenarioIndex = 0;
+    const scenarioTitleEl = document.getElementById("scenario-title");
+    const scenarioContentEl = document.getElementById("scenario-content");
+
+    function renderScenario(index) {
+      scenarioTitleEl.textContent = scenarios[index].title;
+      scenarioContentEl.style.opacity = 0;
+
+      setTimeout(() => {
+        scenarioContentEl.innerHTML = scenarios[index].html;
+        scenarioContentEl.style.opacity = 1;
+      }, 200);
+    }
+
+    renderScenario(scenarioIndex);
+
+    setInterval(() => {
+      scenarioIndex = (scenarioIndex + 1) % scenarios.length;
+      renderScenario(scenarioIndex);
+    }, 3500);
   </script>
 </body>
 </html>

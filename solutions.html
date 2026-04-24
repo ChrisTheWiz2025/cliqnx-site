@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CliqNx Solutions</title>
+
+  <title>CliqNx Solutions | Operational accountability for real-world workflows</title>
   <meta
     name="description"
-    content="CliqNx solutions for personal reminders, family coordination, and operational compliance."
+    content="CliqNx solutions for personal routines, family coordination, elderly care, business operations, maintenance checks, and accountable follow-up workflows."
   />
+
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +18,62 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="assets/styles.css" />
+
+  <style>
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-login {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .btn-login:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .solution-list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 18px 0 0;
+      list-style: none;
+    }
+
+    .solution-list li {
+      color: #dbe4ff;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .solution-list li::before {
+      content: "✓";
+      color: #1dbe8b;
+      margin-right: 8px;
+      font-weight: 800;
+    }
+
+    .solution-note {
+      margin-top: 18px;
+      color: #a5b4d4;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .nav-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <nav class="nav">
     <div class="wrap nav-inner">
@@ -32,7 +89,10 @@
         <a href="contact.html">Contact</a>
       </div>
 
-      <a class="btn btn-primary" href="contact.html">Book a Demo</a>
+      <div class="nav-actions">
+        <a class="btn btn-login" href="https://app.cliqnx.com/">Log In</a>
+        <a class="btn btn-primary" href="contact.html">Book a Demo</a>
+      </div>
     </div>
   </nav>
 
@@ -45,36 +105,54 @@
         </div>
 
         <div class="hero-copy">
-          <h1 class="page-title"><span class="gradient-text">Three paths. One intelligent engine.</span></h1>
+          <h1 class="page-title">
+            <span class="gradient-text">One accountability engine. Many ways to use it.</span>
+          </h1>
           <p>
-            CliqNx adapts the same trigger, proof, approval, and escalation engine
-            to personal routines, family coordination, and business operations.
+            CliqNx helps people and teams trigger important actions, deliver them through
+            the right channels, escalate when they are ignored, collect proof, require
+            approval, and keep a clear activity trail.
           </p>
         </div>
 
         <div class="card-grid" style="margin-top: 30px;">
           <article class="card">
-            <h3>Personal</h3>
+            <h3>Personal routines</h3>
             <p>
-              Medication, appointments, maintenance, deadlines, and everyday routines
-              that need more than a basic reminder.
+              For important reminders that need more than a simple phone alert.
             </p>
+            <ul class="solution-list">
+              <li>Medication and health routines</li>
+              <li>Appointments and deadlines</li>
+              <li>Home maintenance and recurring checks</li>
+              <li>Push reminders with completion notes</li>
+            </ul>
           </article>
 
           <article class="card">
-            <h3>Family</h3>
+            <h3>Family and care</h3>
             <p>
-              Shared routines, care reminders, recurring tasks, approvals, and
-              responsibilities that need visibility and follow-up.
+              For shared responsibilities where someone needs visibility and follow-up.
             </p>
+            <ul class="solution-list">
+              <li>Children routines and homework checks</li>
+              <li>Elderly care reminders</li>
+              <li>Parent or carer follow-up</li>
+              <li>Approval and escalation when needed</li>
+            </ul>
           </article>
 
           <article class="card">
-            <h3>Operations</h3>
+            <h3>Business operations</h3>
             <p>
-              Fleet checks, forklift inspections, CVRT and NCT deadlines, defect
-              reporting, dashcam checks, and maintenance workflows.
+              For teams that need proof, accountability, and a record of what happened.
             </p>
+            <ul class="solution-list">
+              <li>Daily operational checks</li>
+              <li>Maintenance and service reminders</li>
+              <li>Item inspections and issue follow-up</li>
+              <li>Escalation through email, SMS, and voice</li>
+            </ul>
           </article>
         </div>
       </div>
@@ -83,24 +161,56 @@
     <section style="padding-top: 14px;">
       <div class="wrap split">
         <article class="card">
-          <h2>Fleet &amp; Equipment Compliance</h2>
+          <h2>Maintenance, checks, and compliance follow-up</h2>
           <p>
-            Run daily vehicle and forklift checks, require proof of completion,
-            escalate missed tasks, and keep an audit trail that is actually usable.
+            CliqNx can support vehicle, equipment, site, and asset workflows without
+            pretending to be a GPS tracking or dashcam system. Use it for the tasks
+            that must be completed around those assets.
+          </p>
+          <ul class="solution-list">
+            <li>Daily vehicle or forklift checks</li>
+            <li>CVRT, NCT, insurance, and service reminders</li>
+            <li>Photo proof for inspections</li>
+            <li>Defect follow-up linked to items</li>
+            <li>Audit history for completed and missed checks</li>
+          </ul>
+          <p class="solution-note">
+            CliqNx does not provide live vehicle tracking, dashcam footage, or telematics
+            hardware. It helps make sure required actions, checks, and follow-ups are
+            completed and recorded.
           </p>
         </article>
 
         <article class="card">
-          <h2>Modern Family Coordination</h2>
+          <h2>Team accountability without the noise</h2>
           <p>
-            Support shared routines with delivery flow, reminders that land at the
-            right time, and better accountability without friction.
+            Many tools stop at sending a notification. CliqNx is designed around what
+            happens after that: who received it, who ignored it, who completed it, and
+            whether proof or approval was required.
           </p>
+          <ul class="solution-list">
+            <li>Workspace roles for owners, admins, managers, users, and guests</li>
+            <li>Checklist questions for structured completion</li>
+            <li>Escalations and overdue repeat</li>
+            <li>Completion proof with comments and photos</li>
+            <li>Approval workflows for controlled sign-off</li>
+          </ul>
         </article>
       </div>
 
+      <div class="wrap">
+        <div class="band" style="margin-top: 28px;">
+          <h3>From reminder to resolved</h3>
+          <p>
+            Trigger the task, deliver it, escalate it, prove it, approve it, and track it.
+            That is the CliqNx flow.
+          </p>
+        </div>
+      </div>
+
       <div class="wrap cta">
-        <a class="btn btn-primary" href="contact.html">Talk to CliqNx</a>
+        <a class="btn btn-primary" href="contact.html">Book a Demo</a>
+        <a class="btn btn-secondary" href="https://app.cliqnx.com/">Log In</a>
       </div>
     </section>
   </main>
@@ -112,6 +222,7 @@
         <a href="solutions.html">Solutions</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
+        <a href="https://app.cliqnx.com/">Log In</a>
       </div>
     </div>
   </footer>

@@ -3,22 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About CliqNx</title>
-  <meta name="description" content="About the CliqNx platform and vision." />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <title>About CliqNx | Operational accountability platform</title>
+
+  <meta
+    name="description"
+    content="CliqNx is an operational accountability platform built to help people and teams trigger, escalate, complete, and track the work that matters."
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/cliqnx-favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/cliqnx-favicon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
+
   <link rel="stylesheet" href="assets/styles.css" />
+
+  <style>
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-login {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .btn-login:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .brand img {
+      height: 56px;
+      width: 56px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-actions {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <nav class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="index.html">
-        <img src="assets/CliqNx Favicon.png" alt="CliqNx logo" />
+        <img src="/assets/cliqnx-favicon.png" alt="CliqNx logo" />
         <span>CliqNx</span>
       </a>
 
@@ -29,7 +72,10 @@
         <a href="contact.html">Contact</a>
       </div>
 
-      <a class="btn btn-primary" href="contact.html">Book a Demo</a>
+      <div class="nav-actions">
+        <a class="btn btn-login" href="https://app.cliqnx.com/">Log In</a>
+        <a class="btn btn-primary" href="contact.html">Book a Demo</a>
+      </div>
     </div>
   </nav>
 
@@ -42,10 +88,13 @@
         </div>
 
         <div class="hero-copy">
-          <h1 class="page-title"><span class="gradient-text">Built for what matters next.</span></h1>
+          <h1 class="page-title">
+            <span class="gradient-text">Built for follow-through.</span>
+          </h1>
           <p>
-            CliqNx started with a simple belief: reminders should do more than sit quietly on a screen.
-            They should trigger action, create accountability, and escalate when something important is ignored.
+            CliqNx was created with a simple idea: reminders should not be passive.
+            They should trigger action, create accountability, and ensure that
+            important things are actually completed.
           </p>
         </div>
       </div>
@@ -53,15 +102,17 @@
 
     <section style="padding-top: 10px;">
       <div class="wrap stack">
+
         <article class="card">
-          <h2>The idea behind CliqNx</h2>
+          <h2>The shift from reminders to accountability</h2>
           <p>
-            That is why CliqNx is evolving into a modern trigger, delivery, and follow-up platform —
-            useful for personal routines, family coordination, and operational compliance in real-world businesses.
+            Most tools stop at sending a notification. CliqNx is designed around what
+            happens after that moment — who received it, who ignored it, who acted on it,
+            and whether the outcome was verified.
           </p>
           <p>
-            The goal is to keep the experience clear on the surface while making the engine underneath
-            powerful enough to handle delivery flow, proof, approval, recurrence, and escalation.
+            The platform connects triggers, delivery channels, escalation, proof,
+            approval, and activity tracking into one structured flow.
           </p>
         </article>
 
@@ -69,28 +120,53 @@
           <article class="card">
             <h2>Simple on the surface</h2>
             <p>
-              CliqNx is designed to feel modern, clear, and approachable. Tasks should be easy to create,
-              easy to understand, and easy to complete without friction.
+              Creating a reminder, assigning it, and completing it should feel fast and
+              natural. CliqNx is built to stay clear and intuitive for everyday use.
             </p>
           </article>
 
           <article class="card">
             <h2>Power underneath</h2>
             <p>
-              Behind that simplicity sits a more intelligent system: channels, approvals, proof of completion,
-              follow-up paths, escalation logic, and accountability built into the workflow.
+              Behind that simplicity sits a more advanced system: multi-channel delivery,
+              escalation paths, checklist validation, proof of completion, approval
+              workflows, and a full audit trail.
             </p>
           </article>
         </div>
 
         <article class="card">
-          <h2>Where it fits</h2>
+          <h2>Where CliqNx fits</h2>
           <p>
-            CliqNx can support everyday personal routines, shared family coordination, and real operational
-            use cases such as fleet checks, maintenance reminders, compliance tasks, defect reporting,
-            and business-critical follow-up workflows.
+            CliqNx supports personal routines, family coordination, and operational
+            workflows across teams and organisations.
+          </p>
+
+          <p>
+            It can be used for maintenance checks, compliance reminders, service
+            schedules, inspections, defect follow-up, and general task accountability.
+          </p>
+
+          <p>
+            CliqNx is not a GPS tracking, dashcam, or hardware telematics system. It
+            sits above those tools, focusing on the actions that need to happen and
+            ensuring they are completed and recorded.
           </p>
         </article>
+
+        <article class="card">
+          <h2>The direction</h2>
+          <p>
+            CliqNx is evolving into a platform where tasks are not just assigned, but
+            followed through — from trigger to completion, with visibility at every step.
+          </p>
+
+          <p>
+            The goal is simple: nothing important gets ignored, and everything that
+            matters is accounted for.
+          </p>
+        </article>
+
       </div>
     </section>
   </main>
@@ -98,10 +174,12 @@
   <footer>
     <div class="wrap footer-inner">
       <span>© 2026 CliqNx. The next way to trigger what matters.</span>
+
       <div style="display: flex; gap: 16px;">
         <a href="solutions.html">Solutions</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
+        <a href="https://app.cliqnx.com/">Log In</a>
       </div>
     </div>
   </footer>

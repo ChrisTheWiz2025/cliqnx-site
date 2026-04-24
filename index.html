@@ -11,9 +11,8 @@
     content="CliqNx is an operational accountability platform that helps teams trigger, deliver, escalate, complete, and track the tasks that matter."
   />
 
-  <!-- Favicon (same file as logo) -->
-  <link rel="icon" type="image/png" href="assets/cliqnx-favicon.png" />
-  <link rel="apple-touch-icon" href="assets/cliqnx-favicon.png" />
+  <link rel="icon" type="image/png" href="/assets/cliqnx-favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/cliqnx-favicon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,7 +45,6 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
-    /* Ensure logo displays clean */
     .brand img {
       height: 80px;
       width: 80px;
@@ -54,7 +52,88 @@
       border-radius: 10px;
     }
 
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .price-card {
+      position: relative;
+      padding: 26px;
+      border-radius: 26px;
+      background: rgba(12, 18, 39, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+    }
+
+    .price-card.featured {
+      border-color: rgba(29, 190, 139, 0.5);
+      background:
+        radial-gradient(circle at top right, rgba(29, 190, 139, 0.18), transparent 35%),
+        rgba(12, 18, 39, 0.82);
+    }
+
+    .price-card.premium {
+      border-color: rgba(124, 92, 255, 0.55);
+      background:
+        radial-gradient(circle at top right, rgba(124, 92, 255, 0.22), transparent 36%),
+        rgba(12, 18, 39, 0.82);
+    }
+
+    .price-tag {
+      margin: 16px 0 8px;
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #eef2ff;
+    }
+
+    .price-tag span {
+      font-size: 0.9rem;
+      color: #a5b4d4;
+      font-weight: 600;
+    }
+
+    .price-note {
+      color: #a5b4d4;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    .price-list {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .price-list li {
+      color: #dbe4ff;
+      font-size: 0.94rem;
+    }
+
+    .price-list li::before {
+      content: "✓";
+      color: #1dbe8b;
+      margin-right: 8px;
+      font-weight: 800;
+    }
+
+    .usage-note {
+      margin-top: 18px;
+      color: #a5b4d4;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
     @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
       .nav-actions {
         width: 100%;
         justify-content: flex-start;
@@ -68,7 +147,7 @@
   <nav class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="index.html">
-        <img src="assets/cliqnx-favicon.png" alt="CliqNx logo" />
+        <img src="/assets/cliqnx-favicon.png" alt="CliqNx logo" />
         <span>CliqNx</span>
       </a>
 
@@ -89,10 +168,10 @@
   <main>
     <section class="hero">
       <div class="wrap hero-grid">
-        <div>
+        <div data-reveal class="visible">
           <div class="eyebrow">
             <span class="glow-dot"></span>
-            Operational accountability for people and teams
+            Operational accountability for people, teams, and real-world workflows
           </div>
 
           <h1>
@@ -100,32 +179,215 @@
           </h1>
 
           <p>
-            CliqNx turns reminders into accountable actions. Trigger tasks,
-            deliver them, escalate when ignored, collect proof, and track what happened.
+            CliqNx turns reminders into accountable actions. Trigger tasks, deliver them
+            through the right channels, escalate when ignored, collect proof, require
+            approval, and track what happened across your workspace.
           </p>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="contact.html">Book a Demo</a>
             <a class="btn btn-secondary" href="solutions.html">Explore Solutions</a>
           </div>
+
+          <div class="hero-stats">
+            <div class="stat" data-reveal>
+              <strong>Trigger</strong>
+              <span>Create reminders, checks, tasks, and operational follow-ups.</span>
+            </div>
+
+            <div class="stat delay-1" data-reveal>
+              <strong>Escalate</strong>
+              <span>Use push, email, SMS, and voice paths to make sure nothing is ignored.</span>
+            </div>
+
+            <div class="stat delay-2" data-reveal>
+              <strong>Prove</strong>
+              <span>Capture comments, photos, approvals, item issues, and activity history.</span>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-panel">
+        <div class="hero-panel" data-reveal>
           <div class="device">
             <div class="device-top">
               <span>CliqNx</span>
-              <span id="scenario-title">Live preview</span>
+              <span id="scenario-title">Live trigger preview</span>
             </div>
+
             <div id="scenario-content"></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading" data-reveal>
+          <h2>One accountability engine. Multiple real-world uses.</h2>
+          <p>
+            CliqNx keeps the interface simple, but gives workspaces the structure needed
+            to manage reminders, items, people, channels, proof, approvals, and escalation.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="feature-card" data-reveal>
+            <div class="icon-box">⚡</div>
+            <h3>Trigger the right action</h3>
+            <p>
+              Create reminders, checks, and follow-ups for people, teams, contacts,
+              items, assets, places, or recurring operational routines.
+            </p>
+          </article>
+
+          <article class="feature-card delay-1" data-reveal>
+            <div class="icon-box">📡</div>
+            <h3>Deliver across channels</h3>
+            <p>
+              Use push, email, SMS, and voice delivery depending on the plan, urgency,
+              and recipient eligibility.
+            </p>
+          </article>
+
+          <article class="feature-card delay-2" data-reveal>
+            <div class="icon-box">✅</div>
+            <h3>Confirm, prove, approve</h3>
+            <p>
+              Require checklist answers, comments, photos, approval, and audit history
+              before important work is considered complete.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading" data-reveal>
+          <h2>Built for follow-through, not just notifications.</h2>
+          <p>
+            Most systems tell someone that something happened. CliqNx helps make sure
+            someone acts on it, confirms it, and leaves a clear record behind.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="feature-card" data-reveal>
+            <div class="icon-box">👥</div>
+            <h3>Workspaces and roles</h3>
+            <p>
+              Structure access with owners, admins, managers, users, and guests so each
+              person sees the right controls.
+            </p>
+          </article>
+
+          <article class="feature-card delay-1" data-reveal>
+            <div class="icon-box">🧩</div>
+            <h3>Items and issues</h3>
+            <p>
+              Link reminders to tracked items and surface failed checklist answers as
+              issues that can be reviewed and followed up.
+            </p>
+          </article>
+
+          <article class="feature-card delay-2" data-reveal>
+            <div class="icon-box">📊</div>
+            <h3>Activity and visibility</h3>
+            <p>
+              See what was created, delivered, completed, missed, escalated, approved,
+              or left outstanding.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="band" data-reveal>
+          <h3>Designed for personal routines, family care, and business operations</h3>
+          <p>
+            Use CliqNx for medication reminders, family responsibilities, maintenance
+            checks, compliance tasks, item inspections, defect follow-ups, service
+            deadlines, and team accountability. It is not a GPS tracking, dashcam, or
+            hardware telematics product — it is the layer that helps make sure required
+            actions actually get done.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading" data-reveal>
+          <h2>Simple workspace pricing</h2>
+          <p>
+            Start free, then move to a workspace plan when you need stronger delivery,
+            escalation, proof, and operational control. Paid prices are shown ex VAT.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card" data-reveal>
+            <div class="status-pill">Free</div>
+            <h3>Start simple</h3>
+            <div class="price-tag">€0</div>
+            <p class="price-note">For trying CliqNx with basic reminders.</p>
+            <ul class="price-list">
+              <li>1 workspace</li>
+              <li>Up to 3 users</li>
+              <li>Push reminders only</li>
+              <li>Basic reminders and checklists</li>
+              <li>Comment proof</li>
+            </ul>
+          </article>
+
+          <article class="price-card featured delay-1" data-reveal>
+            <div class="status-pill status-success">Basic</div>
+            <h3>Run team operations</h3>
+            <div class="price-tag">€49.99 <span>/ month ex VAT</span></div>
+            <p class="price-note">For teams that need escalation, proof, and SMS delivery.</p>
+            <ul class="price-list">
+              <li>1 workspace included</li>
+              <li>Up to 10 users included</li>
+              <li>Extra users: €5/user/month</li>
+              <li>Push, email, and SMS</li>
+              <li>100 SMS/month included</li>
+              <li>Escalations and overdue repeat</li>
+              <li>Photo proof, items, and issues</li>
+            </ul>
+          </article>
+
+          <article class="price-card premium delay-2" data-reveal>
+            <div class="status-pill status-warning">Pro</div>
+            <h3>Full accountability control</h3>
+            <div class="price-tag">€99 <span>/ month ex VAT</span></div>
+            <p class="price-note">For advanced workflows with voice, approvals, and analytics.</p>
+            <ul class="price-list">
+              <li>Everything in Basic</li>
+              <li>1 workspace included</li>
+              <li>Up to 10 users included</li>
+              <li>Extra users: €5/user/month</li>
+              <li>300 SMS/month included</li>
+              <li>Voice delivery</li>
+              <li>Approval workflows and analytics</li>
+              <li>Priority support</li>
+            </ul>
+          </article>
+        </div>
+
+        <p class="usage-note" data-reveal>
+          Push and email are included. SMS includes a monthly allowance and additional
+          SMS is billed separately. Voice is available on Pro and billed based on usage.
+        </p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="wrap footer-inner">
-      <span>© 2026 CliqNx</span>
+      <span>© 2026 CliqNx. The next way to trigger what matters.</span>
+
       <div style="display: flex; gap: 16px;">
         <a href="solutions.html">Solutions</a>
         <a href="about.html">About</a>
@@ -136,36 +398,182 @@
   </footer>
 
   <script>
+    const revealEls = document.querySelectorAll("[data-reveal]");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    revealEls.forEach((el) => observer.observe(el));
+
     const scenarios = [
       {
-        title: "Personal",
-        html: `<div class="device-card">Workout reminder → Completed</div>`
+        title: "Personal routine",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Upcoming</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Workout Reminder</h3>
+            <div class="mini-row">
+              <span>Recipient</span>
+              <strong style="color: #EEF2FF;">Individual user</strong>
+            </div>
+            <div class="mini-row">
+              <span>Delivery Flow</span>
+              <strong style="color: #EEF2FF;">Push → SMS</strong>
+            </div>
+            <div class="mini-row">
+              <span>Rules</span>
+              <strong style="color: #EEF2FF;">Comment proof</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Completed</div>
+            <div class="mini-row">
+              <span>18:00</span>
+              <span>Confirmed by user</span>
+            </div>
+          </div>
+        `
       },
       {
-        title: "Family",
-        html: `<div class="device-card">Homework → Approved</div>`
+        title: "Family coordination",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Pending</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Children Homework Check</h3>
+            <div class="mini-row">
+              <span>Recipients</span>
+              <strong style="color: #EEF2FF;">Child → Parent</strong>
+            </div>
+            <div class="mini-row">
+              <span>Delivery Flow</span>
+              <strong style="color: #EEF2FF;">Push → Parent alert</strong>
+            </div>
+            <div class="mini-row">
+              <span>Rules</span>
+              <strong style="color: #EEF2FF;">Approval required</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Approved</div>
+            <div class="mini-row">
+              <span>19:15</span>
+              <span>Reviewed by parent</span>
+            </div>
+          </div>
+        `
       },
       {
-        title: "Operations",
-        html: `<div class="device-card">Safety check → Completed</div>`
+        title: "Elderly care",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Medication due</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Morning Medication Reminder</h3>
+            <div class="mini-row">
+              <span>Recipients</span>
+              <strong style="color: #EEF2FF;">Elderly person → Carer</strong>
+            </div>
+            <div class="mini-row">
+              <span>Delivery Flow</span>
+              <strong style="color: #EEF2FF;">Push → Voice call</strong>
+            </div>
+            <div class="mini-row">
+              <span>Escalation</span>
+              <strong style="color: #EEF2FF;">Notify carer if missed</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Acknowledged</div>
+            <div class="mini-row">
+              <span>08:10</span>
+              <span>Confirmed by carer</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Business operations",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Upcoming check</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Forklift FL-03 Safety Check</h3>
+            <div class="mini-row">
+              <span>Recipients</span>
+              <strong style="color: #EEF2FF;">Operator → Supervisor</strong>
+            </div>
+            <div class="mini-row">
+              <span>Delivery Flow</span>
+              <strong style="color: #EEF2FF;">Push → SMS → Email</strong>
+            </div>
+            <div class="mini-row">
+              <span>Rules</span>
+              <strong style="color: #EEF2FF;">Photo + comment required</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Completed</div>
+            <div class="mini-row">
+              <span>07:45</span>
+              <span>Approved by Manager</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Maintenance check",
+        html: `
+          <div class="device-card">
+            <div class="status-pill status-warning">Issue raised</div>
+            <h3 style="margin: 14px 0 0; font-size: 1.3rem;">Service Check Failed</h3>
+            <div class="mini-row">
+              <span>Linked item</span>
+              <strong style="color: #EEF2FF;">Van 04 · Rear tyre</strong>
+            </div>
+            <div class="mini-row">
+              <span>Checklist</span>
+              <strong style="color: #EEF2FF;">Defect captured</strong>
+            </div>
+            <div class="mini-row">
+              <span>Next action</span>
+              <strong style="color: #EEF2FF;">Manager follow-up</strong>
+            </div>
+          </div>
+          <div class="device-card">
+            <div class="status-pill status-success">Tracked</div>
+            <div class="mini-row">
+              <span>Issue</span>
+              <span>Added to item history</span>
+            </div>
+          </div>
+        `
       }
     ];
 
-    let i = 0;
-    const title = document.getElementById("scenario-title");
-    const content = document.getElementById("scenario-content");
+    let scenarioIndex = 0;
+    const scenarioTitleEl = document.getElementById("scenario-title");
+    const scenarioContentEl = document.getElementById("scenario-content");
 
-    function render() {
-      title.textContent = scenarios[i].title;
-      content.innerHTML = scenarios[i].html;
+    function renderScenario(index) {
+      scenarioTitleEl.textContent = scenarios[index].title;
+      scenarioContentEl.style.opacity = 0;
+
+      setTimeout(() => {
+        scenarioContentEl.innerHTML = scenarios[index].html;
+        scenarioContentEl.style.opacity = 1;
+      }, 200);
     }
 
-    render();
+    renderScenario(scenarioIndex);
 
     setInterval(() => {
-      i = (i + 1) % scenarios.length;
-      render();
-    }, 4000);
+      scenarioIndex = (scenarioIndex + 1) % scenarios.length;
+      renderScenario(scenarioIndex);
+    }, 5000);
   </script>
 </body>
 </html>
